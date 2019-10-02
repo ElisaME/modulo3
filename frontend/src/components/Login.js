@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AUTH_SERVICE from '../services/auth';
 import { MyContext } from '../context/index';
+import {Link} from 'react-router-dom';
 
 class Login extends Component {
   state = {
@@ -29,41 +30,42 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <section class="hero principal is-fullheight">
-          <div class="hero-body">
+        <section className="hero principal is-fullheight">
+          <div className="hero-body">
               <div className="column is-half">
-                <h1 class="title">
+                <h1 className="title">
                   Fullheight title
                 </h1>
               </div>
               <div className="column is-one-third">
                 <div className="card">
                   <div className="card-content">
-                    <h1 class="title has-text-centered">Iniciar Sesión</h1>
+                    <h1 className="title has-text-centered">Iniciar Sesión</h1>
                       <form onSubmit={this.onSubmit}>
-                        <div class="field">
-                          <label class="label has-text-weight-normal">Correo electrónico:</label>
-                          <div class="control has-icons-left">
-                            <input name="email" onChange={this.handleInput} class="input" type="email" placeholder="Email input"/>
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-envelope"></i>
+                        <div className="field">
+                          <label className="label has-text-weight-normal">Correo electrónico:</label>
+                          <div className="control has-icons-left">
+                            <input name="email" onChange={this.handleInput} className="input" type="email" placeholder="Email input"/>
+                            <span className="icon is-small is-left">
+                              <i className="fas fa-envelope"></i>
                             </span>
                           </div>
-                          {/* <p class="help is-danger">This email is invalid</p> */}
+                          {/* <p className="help is-danger">This email is invalid</p> */}
                         </div>
-                        <div class="field">
-                          <label class="label has-text-weight-normal">Contraseña:</label>
-                          <div class="control has-icons-left">
-                            <input name="password" onChange={this.handleInput} class="input" type="password" placeholder="******"/>
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-key"></i>
+                        <div className="field">
+                          <label className="label has-text-weight-normal">Contraseña:</label>
+                          <div className="control has-icons-left">
+                            <input name="password" onChange={this.handleInput} className="input" type="password" placeholder="******"/>
+                            <span className="icon is-small is-left">
+                              <i className="fas fa-key"></i>
                             </span>
                           </div>
                         </div>
-                        <div class="field">
-                          <div class="control">
-                            <button type="submit" class="button secondary is-medium">Entrar</button>
+                        <div className="field">
+                          <div className="control">
+                            <button type="submit" className="button secondary is-medium">Entrar</button>
                           </div>
+                          <small>¿Aún no tienes cuenta? <Link to="/auth/signup">Regístrate aquí</Link></small>
                         </div>
                       </form>
                   </div>

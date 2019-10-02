@@ -72,7 +72,7 @@ app.locals.title = 'Qué estudiar';
 
 
 const index = require('./routes/index');
-app.use('/auth', index);
+app.use('/api', index);
 
 
 module.exports = app;

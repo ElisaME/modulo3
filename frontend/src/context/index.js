@@ -20,7 +20,7 @@ class MyProvider extends Component {
       })
       .catch((err) => console.log(err));
   };
-
+  
   render() {
     const { state, logUser, logOut } = this;
     return (

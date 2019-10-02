@@ -26,7 +26,7 @@ export default class Navbar extends Component {
       <div>
         <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
-            <Link className="navbar-item">
+            <Link to="/" className="navbar-item">
               <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="logo"/>
             </Link>
             <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
