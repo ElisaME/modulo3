@@ -8,8 +8,8 @@ const profileSchema = new Schema ({
   },
   careers: [String],
   test_hermann:{
-    type: [String],
-    enum: ['A' , 'B', 'C', 'D']
+    type: Array,
+    default:[]
   },
   biography: String,
   degree: String

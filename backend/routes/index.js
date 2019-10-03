@@ -5,6 +5,7 @@ const passport = require('../config/passport');
 
 const { signup, login, logout} = require('../controllers/auth');
 const { getProfile, editProfile } = require('../controllers/profile');
+const { sendTest } = require('../controllers/test');
 
 
 router.post('/signup', signup);
@@ -12,5 +13,6 @@ router.post('/login', passport.authenticate('local'), login);
 router.get('/logout', logout);
 router.get('/profile', isAuth('/api/login'), getProfile);
 router.put('/profile', isAuth('/api/login'), editProfile);
+router.post('/test', isAuth('/api/login'), sendTest);
 
 module.exports = router;

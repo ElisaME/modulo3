@@ -51,11 +51,11 @@ export default class Profile extends Component {
             </aside>
             <div className="column is-10 section">
               <div className="columns">
-                <div className="column is-4 has-text-centered">
+                <div className="column is-3 has-text-centered">
                   <figure className="image profile-image">
                     <img className="is-rounded" src={this.context.state.loggedUser.profile.image} alt="profile"/>
                   </figure>
-                  <a class="button secondary is-small">Editar imagen</a>
+                  <a class="button secondary is-small">Editar Perfil</a>
                 </div>
                 <div className="column is-8">
                   <div class="card">
@@ -67,16 +67,6 @@ export default class Profile extends Component {
                       <p>Name: {this.context.state.loggedUser.profile.name}</p>
                       <CardInfo category={this.context.state.loggedUser.category}/>
                     </div>
-                    <footer class="card-footer">
-                      <p class="card-footer-item">
-                        <a class="button secondary">
-                          <span class="icon">
-                            <i class="fas fa-pencil-alt"></i>
-                          </span>
-                          <span>Editar</span>
-                        </a>
-                      </p>
-                    </footer>
                   </div>
                 </div>
               </div>

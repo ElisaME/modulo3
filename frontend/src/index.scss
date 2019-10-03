@@ -31,3 +31,13 @@ body{
   width:200px;
   margin: 0 auto;
 }
+#test{
+  padding:3%;
+}
+.question{
+  display: inline-block;
+}
+.multiple-option > input {
+  margin-left:8%;
+  margin-right:10px;
+}
