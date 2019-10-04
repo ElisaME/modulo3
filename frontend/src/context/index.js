@@ -5,12 +5,22 @@ export const MyContext = createContext();
 
 class MyProvider extends Component {
   state = {
-    loggedUser: null
+    loggedUser: null,
+    currentProfile:null
   };
 
   logUser = (loggedUser) => {
     this.setState({ loggedUser });
+    this.getProfile()
   };
+
+  getProfile = () => {
+    AUTH_SERVICE.profile()
+      .then((response) => {
+        this.setState({currentProfile: response.data.user.profile})
+        console.log('here in getProfile<<<<<<<<' + this.state.currentProfile)
+      })
+  }
 
   logOut = () => {
     AUTH_SERVICE.logOut()

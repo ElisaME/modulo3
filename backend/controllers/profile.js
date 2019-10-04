@@ -1,10 +1,9 @@
 const User = require('../models/User');
 const Profile = require('../models/Profile');
 
-exports.getProfile = (req, res, next) => {
-  User.findById(req.user._id).populate('profile')
-    .then((user) => res.status(200).json({ user }))
-    .catch((err) => res.status(500).json({ err }));
+exports.getProfile = async (req, res, next) => {
+  const user = await User.findById(req.user._id).populate('profile')
+  res.status(200).json({user})
 };
 
 exports.editProfile = async (req, res, next) => {

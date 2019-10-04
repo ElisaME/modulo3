@@ -1,11 +1,9 @@
 const User = require('../models/User');
-const Profile = require('../models/Profile');
-
 
 exports.signup = async (req, res, next) => {
-  const {email, category} = req.body
-  const profile =  await Profile.create({})
-  User.register({email, category, profile }, req.body.password)
+  const {name, email, category, biography, degree} = req.body
+  //const profile =  await Profile.create({})
+  User.register({name, email, category, biography, degree}, req.body.password)
     .then((user) => res.status(201).json({ user }))
     .catch((err) => res.status(500).json({ err }));
 };

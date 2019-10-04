@@ -42,9 +42,17 @@ export default class Signup extends Component {
                     <h1 className="title has-text-centered">Regístrate</h1>
                       <form onSubmit={this.onSubmit}>
                         <div className="field">
+                          <label className="label has-text-weight-normal">Nombre:</label>
+                          <div className="control has-icons-left">
+                            <input name="name" onChange={this.handleInput} className="input" type="text" placeholder="Enter your name" required/>
+                            <span className="icon is-small is-left">
+                              <i className="fas fa-user"></i>                            </span>
+                          </div>
+                        </div>
+                        <div className="field">
                           <label className="label has-text-weight-normal">Correo electrónico:</label>
                           <div className="control has-icons-left">
-                            <input name="email" onChange={this.handleInput} className="input" type="email" placeholder="Email input"/>
+                            <input name="email" onChange={this.handleInput} className="input" type="email" placeholder="Email input" required/>
                             <span className="icon is-small is-left">
                               <i className="fas fa-envelope"></i>
                             </span>
@@ -54,7 +62,7 @@ export default class Signup extends Component {
                         <div className="field">
                           <label className="label has-text-weight-normal">Contraseña:</label>
                           <div className="control has-icons-left">
-                            <input name="password" onChange={this.handleInput} className="input" type="password" placeholder="Text input"/>
+                            <input name="password" onChange={this.handleInput} className="input" type="password" placeholder="Text input" required/>
                             <span className="icon is-small is-left">
                               <i className="fas fa-key"></i>
                             </span>
@@ -71,7 +79,24 @@ export default class Signup extends Component {
                             </label>
                           </div>
                         </div>
-                        
+                        <div className="field">
+                          <label className="label has-text-weight-normal">Sobre mi:</label>
+                          <div className="control has-icons-left">
+                            <textarea name="biography" onChange={this.handleInput} className="input" type="text" placeholder="Comparte algo sobre ti..." />
+                            <span className="icon is-small is-left">
+                              <i className="fas fa-id-card"></i>
+                            </span>
+                          </div>
+                        </div>
+                        <div className="field">
+                          <label className="label has-text-weight-normal">Título:</label>
+                          <div className="control has-icons-left">
+                            <input name="degree" onChange={this.handleInput} className="input" type="text" placeholder="Comparte algo sobre ti..." />
+                            <span className="icon is-small is-left">
+                              <i className="fas fa-graduation-cap"></i>
+                            </span>
+                          </div>
+                        </div>
                         <div className="field">
                           <div className="control">
                             <button type="submit" className="button secondary is-medium">Registrarse</button>

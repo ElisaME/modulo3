@@ -12,6 +12,8 @@ body{
 }
 .card{
   border-radius: 7px;
+  overflow: auto;
+  height: 70vh;
 }
 .button{
   border: none;
