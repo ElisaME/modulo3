@@ -7,8 +7,7 @@ exports.getProfile = async (req, res, next) => {
 };
 
 exports.editProfile = async (req, res, next) => {
-  const {name, image } = req.body
-  const { profile } = await User.findById(req.user.id)
-  await Profile.findByIdAndUpdate(profile, {name,image})
-  res.status(200).json({ profile });
+  const user  = req.user;
+  await User.findByIdAndUpdate(user, {...req.body}, {new:true})
+  res.status(200).json({user})
 };

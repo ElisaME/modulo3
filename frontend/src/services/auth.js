@@ -16,8 +16,8 @@ const AUTH_SERVICE = {
   profile: async () => {
     return await SERVICE.get('/profile');
   },
-  editProfile: async () => {
-    return await SERVICE.put('/profile');
+  editProfile: async (user) => {
+    return await SERVICE.put('/profile', user);
   }
 };
 
