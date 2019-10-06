@@ -11,7 +11,6 @@ export default class CareerContainer extends Component {
       .get('http://localhost:3000/api/careers')
       .then(({ data }) => {
         this.setState({ careers: [...data.careers] })
-        console.log(data)
       })
       .catch((error) => {console.log(error)});
   }
@@ -20,32 +19,34 @@ export default class CareerContainer extends Component {
     const { careers } = this.state;
     return (
       <div className="section">
-        <nav class="panel">
-        <p class="panel-heading">
+        <nav className="panel">
+        <p className="panel-heading">
           Careers
         </p>
-        <div class="panel-block">
-          <p class="control has-icons-left">
-            <input class="input is-small" type="text" placeholder="search"/>
-            <span class="icon is-small is-left">
-              <i class="fas fa-search" aria-hidden="true"></i>
+        <div className="panel-block">
+          <p className="control has-icons-left">
+            <input className="input is-small" type="text" placeholder="search"/>
+            <span className="icon is-small is-left">
+              <i className="fas fa-search" aria-hidden="true"></i>
             </span>
           </p>
         </div>
-        <p class="panel-tabs">
-          <a class="is-active">all</a>
-          <a>Área 1</a>
-          <a>Área 2</a>
-          <a>Área 3</a>
-          <a>Área 4</a>
+        <p className="panel-tabs">
+          <span className="is-active">all</span>
+          <span>Área 1</span>
+          <span>Área 2</span>
+          <span>Área 3</span>
+          <span>Área 4</span>
         </p>
         {careers.map((career) => (
-          <a class="panel-block">
-            <span class="panel-icon">
-              <i class="fas fa-book" aria-hidden="true"></i>
+          <p key={career._id} className="panel-block" onClick={() =>
+                  this.props.history.push(`/career/${career._id}`)
+                }> 
+            <span className="panel-icon">
+              <i className="fas fa-book" aria-hidden="true"></i>
             </span>
             {career.name}
-          </a>
+          </p>
         ))}
         </nav>
         

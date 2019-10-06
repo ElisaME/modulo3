@@ -7,6 +7,7 @@ import Profile from './components/profile/ProfileContainer';
 import EditProfile from './components/profile/EditProfile';
 import Navbar from './components/Navbar';
 import CareerContainer from './components/career/CareerContainer';
+import CareerDetail from './components/career/CareerDetail';
 
 const Router = () => (
   <BrowserRouter>
@@ -18,6 +19,7 @@ const Router = () => (
       <Route exact path="/test" component={Test}/>
       <Route exact path="/auth/edit-profile" component={EditProfile} />
       <Route exact path="/allCareers" component={CareerContainer}/>
+      <Route exact path="/career/:id" component={CareerDetail}/>
     </Switch>
   </BrowserRouter>
 );
