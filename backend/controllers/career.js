@@ -22,8 +22,9 @@ exports.careerDetail = (req, res, next) => {
 
 exports.mentorCareer = async (req, res, next) => {
   const user = await User.findById(req.user.id)
-  const career = await Career.findById(req.body.careerMentor)
-  user.careers.push(career.id)
+  const {career} = req.body
+  const careerMentor = await Career.findById(career)
+  user.careers.push(careerMentor.id)
   user.save()
   .then((user) => 
     res.status(200).json({user}

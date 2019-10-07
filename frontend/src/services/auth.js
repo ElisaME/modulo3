@@ -21,6 +21,9 @@ const AUTH_SERVICE = {
   },
   createCareer: async(career) => {
     return await SERVICE.post('/createCareer', career);
+  },
+  asignCareer: async(career) => {
+    return await SERVICE.post('/career/asign', career)
   }
 };
 

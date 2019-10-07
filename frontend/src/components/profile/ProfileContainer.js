@@ -14,7 +14,8 @@ export default class Profile extends Component {
       modalIsOpen: false,
       formIsHide:false,
       careers:[],
-      newCareer:{}
+      newCareer:{},
+      careerMentor:{}
     };
 
     this.openModal = this.openModal.bind(this);
@@ -52,6 +53,23 @@ export default class Profile extends Component {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  handleSelect = e => {
+    let { careerMentor } = this.state;
+    careerMentor['career'] = e.target.value
+    this.setState({careerMentor})
+    console.log('>>>>>>' + this.state.careerMentor)
+  }
+
+  asignCareer = (e) =>{
+    e.preventDefault();
+    AUTH_SERVICE.asignCareer(this.state.careerMentor)
+    .then((response) => {
+      console.log(response);
+      this.props.history.push('/auth/profile');
+      this.setState({modalIsOpen:false})
+    })
   }
 
   componentDidMount() {
@@ -111,20 +129,19 @@ export default class Profile extends Component {
           className="Modal"
           overlayClassName="Overlay"
 >
-          
             <div className="modal-card">
               <header className="modal-card-head">
                 <p className="modal-card-title">Elige una carrera para ser mentor:</p>
                 <button onClick={this.closeModal} className="delete" aria-label="close"></button>
               </header>
               <section className="modal-card-body">
-                <form>
+                <form onSubmit={this.asignCareer}>
                   <div class="field">
                     <label class="label">Carrera</label>
                     <div class="control">
                       <div class="select is-fullwidth">
-                        <select name="careerMentor">
-                          <option>Select dropdown</option>
+                        <select name="careerMentor" onChange={this.handleSelect}>
+                          <option>Selecciona una carrera</option>
                           {careers.map((career) => (
                             <option key={career._id} value={career._id}>{career.name}</option>
                           ))}
