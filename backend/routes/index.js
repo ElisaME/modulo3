@@ -6,7 +6,7 @@ const passport = require('../config/passport');
 const { signup, login, logout} = require('../controllers/auth');
 const { getProfile, editProfile } = require('../controllers/profile');
 const { sendTest } = require('../controllers/test');
-const { createCareer, allCareers, careerDetail } = require('../controllers/career');
+const { createCareer, allCareers, careerDetail, mentorCareer } = require('../controllers/career');
 
 
 router.post('/signup', signup);
@@ -18,5 +18,6 @@ router.post('/test', isAuth('/api/login'), sendTest);
 router.post('/createCareer', createCareer);
 router.get('/careers', allCareers);
 router.get('/career/:id', careerDetail);
+router.post('/career/asign', mentorCareer);
 
 module.exports = router;

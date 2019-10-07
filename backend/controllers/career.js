@@ -1,4 +1,5 @@
 const Career = require('../models/Career');
+const User = require('../models/User');
 
 exports.createCareer = (req, res, next) => {
   const {name, description, area, income, field} = req.body
@@ -17,4 +18,15 @@ exports.careerDetail = (req, res, next) => {
   Career.findById(req.params.id)
     .then((career) => res.status(200).json({ career }))
     .catch((error) => res.status(500).json({ error }));
+}
+
+exports.mentorCareer = async (req, res, next) => {
+  const user = await User.findById(req.user.id)
+  const career = await Career.findById(req.body.careerMentor)
+  user.careers.push(career.id)
+  user.save()
+  .then((user) => 
+    res.status(200).json({user}
+  ))
+  .catch((error) => res.status(500).json({error})); 
 }

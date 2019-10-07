@@ -14,10 +14,17 @@ const userSchema = new Schema({
   },
   biography:String,
   degree:String,
-  careers:Array,
+  careers:[{
+    ref: 'Career', 
+    type: Schema.Types.ObjectId
+  }],
   image:{
     type:String,
     default:'https://png.pngtree.com/svg/20160330/dpi_user_default_avatar_116913.png'
+  },
+  career:{
+    type: Schema.Types.ObjectId,
+    ref:'Career'
   }
 },{
   timestamps:true

@@ -1,9 +1,10 @@
 const User = require('../models/User');
-const Profile = require('../models/Profile');
+const Career = require('../models/Career');
 
 exports.getProfile = async (req, res, next) => {
   const user = await User.findById(req.user._id)
-  res.status(200).json({user})
+  const careers = await Career.find()
+  res.status(200).json({user, careers})
 };
 
 exports.editProfile = async (req, res, next) => {
