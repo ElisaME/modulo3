@@ -18,6 +18,9 @@ const AUTH_SERVICE = {
   },
   editProfile: async (user) => {
     return await SERVICE.put('/profile', user);
+  },
+  createCareer: async(career) => {
+    return await SERVICE.post('/createCareer', career);
   }
 };
 

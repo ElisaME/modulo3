@@ -13,7 +13,8 @@ export default class Profile extends Component {
     this.state = {
       modalIsOpen: false,
       formIsHide:false,
-      careers:[]
+      careers:[],
+      newCareer:{}
     };
 
     this.openModal = this.openModal.bind(this);
@@ -31,6 +32,26 @@ export default class Profile extends Component {
 
   closeModal() {
     this.setState({modalIsOpen: false});
+  }
+
+  handleInput = (e) => {
+    const { newCareer } = this.state;
+    const key = e.target.name;
+    newCareer[key] = e.target.value;
+    this.setState({ newCareer });
+  }
+
+  newCareer = (e) => {
+    e.preventDefault();
+    AUTH_SERVICE.createCareer(this.state.newCareer)
+      .then((response) => {
+        console.log(response.data);
+        this.props.history.push('/auth/profile');
+        this.setState({modalIsOpen:false})
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   componentDidMount() {
@@ -111,38 +132,40 @@ export default class Profile extends Component {
                       </div>
                     </div>
                   </div>
-                  <p>¿No existe la carrera de la cual quieres ser mentor? Regístrala <span onClick={this.handleClick}>aquí.</span></p>
-                  <div className="new-career" hidden = {!this.state.formIsHide}>
-                    <h2 className="subtitle">Registro de carrera:</h2>
-                    <form>
+                  <button type="submit" className="button secondary">Guardar</button>
+                </form>
+                <p>¿No existe la carrera de la cual quieres ser mentor? Regístrala <span onClick={this.handleClick}>aquí.</span></p>
+                <div className="new-career" hidden = {!this.state.formIsHide}>
+                  <h2 className="subtitle">Registro de carrera:</h2>
+                    <form onSubmit={this.newCareer}>
                       <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
-                          <input name="name" class="input" type="text" placeholder="Ingenieria Civil"/>
+                          <input name="name" onChange={this.handleInput} class="input" type="text" placeholder="Ingenieria Civil"/>
                         </div>
                       </div>
                       <div class="field">
                         <label class="label">Description</label>
                         <div class="control">
-                          <textarea name="description" class="input" type="text"/>
+                          <textarea name="description" onChange={this.handleInput} class="input" type="text"/>
                         </div>
                       </div>
                       <div class="field">
                         <label class="label">Área</label>
                         <div class="control">
-                          <input name="area" class="input" type="text" placeholder="Área I"/>
+                          <input name="area" onChange={this.handleInput} class="input" type="text" placeholder="Área I"/>
                         </div>
                       </div>
                       <div class="field">
                         <label class="label">Ingreso Promedio</label>
                         <div class="control">
-                          <input name="income" class="input" type="text" placeholder="$25,000 MXN"/>
+                          <input name="income" onChange={this.handleInput} class="input" type="text" placeholder="$25,000 MXN"/>
                         </div>
                       </div>
                       <div class="field">
                         <label class="label">Campo de trabajo</label>
                         <div class="control">
-                          <input name="income" class="input" type="text" placeholder="Campos de aplicación..."/>
+                          <input name="income" onChange={this.handleInput} class="input" type="text" placeholder="Campos de aplicación..."/>
                         </div>
                       </div>
                       <div class="control">
@@ -150,8 +173,6 @@ export default class Profile extends Component {
                       </div>
                     </form>
                   </div>
-                  <button type="submit" className="button secondary">Guardar</button>
-                </form>
               </section>
             </div>
         </ReactModal>
