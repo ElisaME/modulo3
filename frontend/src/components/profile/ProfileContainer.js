@@ -3,6 +3,7 @@ import { MyContext } from '../../context/index';
 import AUTH_SERVICE from '../../services/auth';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
+import Axios from 'axios';
  
 
 export default class Profile extends Component {
@@ -15,7 +16,8 @@ export default class Profile extends Component {
       formIsHide:false,
       careers:[],
       newCareer:{},
-      careerMentor:{}
+      careerMentor:{},
+      myCareers:[]
     };
 
     this.openModal = this.openModal.bind(this);
@@ -76,7 +78,7 @@ export default class Profile extends Component {
     if (!this.context.state.loggedUser) return this.props.history.push('/auth/login');
     AUTH_SERVICE.profile()
       .then((response) => {
-        this.setState({careers:[...response.data.careers]})
+        this.setState({careers:[...response.data.careers], myCareers:[...response.data.user.careers]})
         console.log(response)
       })
       .catch((error) => {
@@ -85,7 +87,7 @@ export default class Profile extends Component {
   }
 
   render() {
-    const {careers} = this.state
+    const {careers, myCareers} = this.state
     const category = this.context.state.loggedUser.category
     let info;
     if (category === 'Student') {
@@ -119,6 +121,14 @@ export default class Profile extends Component {
               {info}
               <a onClick={this.openModal} type="button">Registrar carrera</a>
             </div>
+          </div>
+          <div>
+            <p>Carreras:</p>
+            <ul>
+              {myCareers.map((career) => (
+                <li>{career.name}</li>
+              ))}
+            </ul>
           </div>
         </div>
         <ReactModal

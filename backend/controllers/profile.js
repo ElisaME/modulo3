@@ -2,7 +2,7 @@ const User = require('../models/User');
 const Career = require('../models/Career');
 
 exports.getProfile = async (req, res, next) => {
-  const user = await User.findById(req.user._id)
+  const user = await User.findById(req.user._id).populate('careers')
   const careers = await Career.find()
   res.status(200).json({user, careers})
 };
