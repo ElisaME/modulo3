@@ -15,11 +15,11 @@ export default class CareerDetail extends Component {
     const {career} = this.state
     return (
       <div>
-        <p>{career.name}</p>
-        <p>{career.description}</p>
-        <p>{career.income}</p>
-        <p>{career.area}</p>
-        <p>{career.field}</p>
+        <p>Nombre: {career.name}</p>
+        <p>Descripción: {career.description}</p>
+        <p>Ingreso Promedio:{career.income}</p>
+        <p>Área: {career.area}</p>
+        <p>Campo de Trabajo: {career.field}</p>
       </div>
     )
   }

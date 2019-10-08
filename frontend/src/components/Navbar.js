@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { MyContext } from '../context/index';
+import logo from '../images/logo_1.gif';
 
 function MenuOptions(props) {
   const isLoggedIn = props.isLoggedIn;
@@ -26,8 +27,8 @@ export default class Navbar extends Component {
       <div>
         <nav className="navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
-            <Link to="/" className="navbar-item">
-              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="logo"/>
+            <Link to="/" className="navbar-item nav-logo">
+              <img src={logo} alt="logo"/>
             </Link>
             <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
               <span aria-hidden="true"></span>
@@ -38,6 +39,7 @@ export default class Navbar extends Component {
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-end">
               <div className="navbar-item">
+                <Link className="has-text-black" to="/allCareers">Carreras</Link>
                 <MenuOptions isLoggedIn={this.context.state.loggedUser}/>
               </div>
             </div>

@@ -31,13 +31,13 @@ export default class CareerContainer extends Component {
             </span>
           </p>
         </div>
-        <p className="panel-tabs">
+        {/* <p className="panel-tabs">
           <span className="is-active">all</span>
           <span>Área 1</span>
           <span>Área 2</span>
           <span>Área 3</span>
           <span>Área 4</span>
-        </p>
+        </p> */}
         {careers.map((career) => (
           <p key={career._id} className="panel-block" onClick={() =>
                   this.props.history.push(`/career/${career._id}`)

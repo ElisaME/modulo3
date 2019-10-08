@@ -90,16 +90,19 @@ export default class Profile extends Component {
     const {careers, myCareers} = this.state
     const category = this.context.state.loggedUser.category
     let info;
+    let myCareersSelection;
     if (category === 'Student') {
       info = <div>
             <p>Carreras:</p>
              <p>Resultados Test Hermann:</p>
             </div>
+      myCareersSelection = <p>Mis opciones de carrera:</p>
     } else {
       info = <div>
              <p>Biografía: {this.context.state.loggedUser.biography}</p>
              <p>Título: {this.context.state.loggedUser.degree}</p>
            </div>
+      myCareersSelection = <p>Carreras de las que soy mentor:</p>
     }
     return (
       <div>
@@ -123,7 +126,7 @@ export default class Profile extends Component {
             </div>
           </div>
           <div>
-            <p>Carreras:</p>
+            {myCareersSelection}
             <ul>
               {myCareers.map((career) => (
                 <li>{career.name}</li>

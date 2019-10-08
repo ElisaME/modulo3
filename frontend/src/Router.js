@@ -8,11 +8,13 @@ import EditProfile from './components/profile/EditProfile';
 import Navbar from './components/Navbar';
 import CareerContainer from './components/career/CareerContainer';
 import CareerDetail from './components/career/CareerDetail';
+import Home from './components/Home';
 
 const Router = () => (
   <BrowserRouter>
     <Navbar></Navbar>
     <Switch>
+      <Route exact path="/" component={Home}/>
       <Route exact path="/auth/signup" component={Signup} />
       <Route exact path="/auth/login" component={Login} />
       <Route exact path="/auth/profile" component={Profile} />

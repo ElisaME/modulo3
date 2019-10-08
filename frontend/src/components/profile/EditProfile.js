@@ -60,7 +60,7 @@ export default class EditProfile extends Component {
       </div>
     } 
     return (
-      <div>
+      <div className="section">
         <p className="subtitle">
           Tu cuenta:
         </p>

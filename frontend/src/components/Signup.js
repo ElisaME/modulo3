@@ -33,7 +33,7 @@ export default class Signup extends Component {
           <div className="hero-body">
               <div className="column is-half">
                 <h1 className="title">
-                  Fullheight title
+                  Bienvenido
                 </h1>
               </div>
               <div className="column is-one-third">

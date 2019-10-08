@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500,600,700&display=swap');
 
-body{
-  font-family: 'Open Sans', sans-serif;
+body, button{
+  font-family: 'IBM Plex Mono', monospace;
 }
-
+.nav-logo{
+  img{
+    width: 150px;
+    max-height: 70px;
+  }
+}
+.home-icon{
+  color:#FF8578;
+  margin:8%;
+}
+.header{
+  background-image: url('./images/header_2.gif');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .principal{
   background: #FF8578;
 }
