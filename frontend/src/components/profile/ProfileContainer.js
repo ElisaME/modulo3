@@ -17,7 +17,9 @@ export default class Profile extends Component {
       careers:[],
       newCareer:{},
       careerMentor:{},
-      myCareers:[]
+      myCareers:[],
+      careersBoxIsVisible:true,
+      eventsBoxIsVisible:false
     };
 
     this.openModal = this.openModal.bind(this);
@@ -74,6 +76,13 @@ export default class Profile extends Component {
     })
   }
 
+  clickCareersBox = () => {
+    this.setState({ careersBoxIsVisible: true, eventsBoxIsVisible: false})
+  }
+  clickEventsBox = () => {
+    this.setState({ careersBoxIsVisible: false, eventsBoxIsVisible: true})
+  }
+
   componentDidMount() {
     if (!this.context.state.loggedUser) return this.props.history.push('/auth/login');
     AUTH_SERVICE.profile()
@@ -93,14 +102,14 @@ export default class Profile extends Component {
     let myCareersSelection;
     if (category === 'Student') {
       info = <div>
-            <p>Carreras:</p>
-             <p>Resultados Test Hermann:</p>
+            <p><span className="property">Carreras:</span> </p>
+             <p><span className="property">Resultados Test Hermann: </span> </p>
             </div>
       myCareersSelection = <p>Mis opciones de carrera:</p>
     } else {
       info = <div>
-             <p>Biografía: {this.context.state.loggedUser.biography}</p>
-             <p>Título: {this.context.state.loggedUser.degree}</p>
+             <p><span className="property">Biografía: </span>  {this.context.state.loggedUser.biography}</p>
+             <p><span className="property">Título: </span>  {this.context.state.loggedUser.degree}</p>
            </div>
       myCareersSelection = <p>Carreras de las que soy mentor:</p>
     }
@@ -120,19 +129,47 @@ export default class Profile extends Component {
               <Link to="edit-profile"><button className="button secondary is-small">Editar Perfil</button></Link>  
             </div>
             <div className="column is-9">
-              <p>Name: {this.context.state.loggedUser.name}</p>
-              {info}
+              <div class="card">
+                <div class="card-content">
+                  <p><span className="property">Name: </span> {this.context.state.loggedUser.name}</p>
+                  {info}
+                </div>
+              </div>
               <a onClick={this.openModal} type="button">Registrar carrera</a>
             </div>
           </div>
-          <div>
-            {myCareersSelection}
+          
+          <section className="section">
+          <div class="tabs is-boxed">
             <ul>
-              {myCareers.map((career) => (
-                <li>{career.name}</li>
-              ))}
+              <li className={`careers ${this.state.careersBoxIsVisible ? ' is-active' : ' ' }`}   onClick={this.clickCareersBox}>
+                <a>
+                  <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+                  <span>Carreras</span>
+                </a>
+              </li>
+              <li className={`events ${this.state.eventsBoxIsVisible ? ' is-active' : ' ' }`}   onClick={this.clickEventsBox}>
+                <a >
+                  <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+                  <span>Eventos</span>
+                </a>
+              </li>
             </ul>
           </div>
+          <div className="container">
+            <div className={`${(this.state.eventsBoxIsVisible) ? 'hidden-box' : 'show-box' }`}>
+              {myCareersSelection}
+              <ul>
+                {myCareers.map((career) => (
+                  <li>{career.name}</li>
+                ))}
+              </ul>
+            </div>
+            <div className={`${(this.state.careersBoxIsVisible) ? 'hidden-box' : 'show-box' }`}>
+              Eventos
+            </div>
+          </div>
+          </section>
         </div>
         <ReactModal
           isOpen={this.state.modalIsOpen}

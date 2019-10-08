@@ -29,7 +29,7 @@ body, button{
 .card{
   border-radius: 7px;
   overflow: auto;
-  height: 70vh;
+  height: 40vh;
 }
 .button{
   border: none;
@@ -48,6 +48,10 @@ body, button{
 .profile-image{
   width:200px;
   margin: 0 auto;
+}
+.property{
+  color: #38519a;
+  font-weight: 600;
 }
 #test{
   padding:3%;
@@ -80,4 +84,10 @@ body, button{
 }
 .new-career{
   margin:20px;
+}
+.hidden-box{
+  display: none;
+}
+.show-box{
+  display: block;
 }
