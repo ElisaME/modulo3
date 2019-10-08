@@ -29,7 +29,7 @@ body, button{
 .card{
   border-radius: 7px;
   overflow: auto;
-  height: 40vh;
+  height: 70vh;
 }
 .button{
   border: none;
@@ -44,6 +44,9 @@ body, button{
 }
 .box{
   padding: 2%;
+}
+.profile-card{
+  height: 40vh;
 }
 .profile-image{
   width:200px;

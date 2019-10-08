@@ -14,10 +14,10 @@ exports.allCareers = (req, res, next) => {
   .catch((error) => res.status(500).json({ error }));
 }
 
-exports.careerDetail = (req, res, next) => {
-  Career.findById(req.params.id)
-    .then((career) => res.status(200).json({ career }))
-    .catch((error) => res.status(500).json({ error }));
+exports.careerDetail = async (req, res, next) => {
+  const career = await Career.findById(req.params.id)
+  const mentors = await User.find({ careers:career.id})
+  res.status(200).json({ career, mentors })
 }
 
 exports.mentorCareer = async (req, res, next) => {
@@ -30,8 +30,4 @@ exports.mentorCareer = async (req, res, next) => {
     res.status(200).json({user}
   ))
   .catch((error) => res.status(500).json({error})); 
-}
-
-exports.getMentors = async (req, res, next) => {
-  
 }

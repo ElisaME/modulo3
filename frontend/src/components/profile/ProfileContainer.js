@@ -129,13 +129,12 @@ export default class Profile extends Component {
               <Link to="edit-profile"><button className="button secondary is-small">Editar Perfil</button></Link>  
             </div>
             <div className="column is-9">
-              <div class="card">
+              <div class="card profile-card">
                 <div class="card-content">
                   <p><span className="property">Name: </span> {this.context.state.loggedUser.name}</p>
                   {info}
                 </div>
               </div>
-              <a onClick={this.openModal} type="button">Registrar carrera</a>
             </div>
           </div>
           
@@ -144,19 +143,19 @@ export default class Profile extends Component {
             <ul>
               <li className={`careers ${this.state.careersBoxIsVisible ? ' is-active' : ' ' }`}   onClick={this.clickCareersBox}>
                 <a>
-                  <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+                  <span class="icon is-small"><i class="fas fa-list-alt"></i></span>
                   <span>Carreras</span>
                 </a>
               </li>
               <li className={`events ${this.state.eventsBoxIsVisible ? ' is-active' : ' ' }`}   onClick={this.clickEventsBox}>
                 <a >
-                  <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+                  <span class="icon is-small"><i class="fas fa-calendar-alt"></i></span>
                   <span>Eventos</span>
                 </a>
               </li>
             </ul>
           </div>
-          <div className="container">
+          <div className="container has-background-white">
             <div className={`${(this.state.eventsBoxIsVisible) ? 'hidden-box' : 'show-box' }`}>
               {myCareersSelection}
               <ul>
@@ -164,6 +163,18 @@ export default class Profile extends Component {
                   <li>{career.name}</li>
                 ))}
               </ul>
+              <div class="field is-grouped">
+                <p class="control">
+                  <a class="button secondary" onClick={this.openModal}>
+                    Registrar carrera
+                  </a>
+                </p>
+                <p class="control">
+                  <a class="button secondary">
+                    Editar
+                  </a>
+                </p>
+              </div>
             </div>
             <div className={`${(this.state.careersBoxIsVisible) ? 'hidden-box' : 'show-box' }`}>
               Eventos

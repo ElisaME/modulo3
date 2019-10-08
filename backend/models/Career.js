@@ -5,7 +5,11 @@ const careerSchema = new Schema ({
   description:String,
   area:String,
   income:String,
-  field:String
+  field:String,
+  // users_id:{
+  //   type:Schema.Types.ObjectId,
+  //   ref:"User"
+  // }
 })
 
 module.exports = model('Career', careerSchema);

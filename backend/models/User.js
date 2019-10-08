@@ -21,10 +21,6 @@ const userSchema = new Schema({
   image:{
     type:String,
     default:'https://png.pngtree.com/svg/20160330/dpi_user_default_avatar_116913.png'
-  },
-  career:{
-    type: Schema.Types.ObjectId,
-    ref:'Career'
   }
 },{
   timestamps:true
