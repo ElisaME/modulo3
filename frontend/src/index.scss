@@ -26,7 +26,7 @@ body, button{
 .secondary{
   background: #50D5D9;
 }
-.card{
+.card-form{
   border-radius: 7px;
   overflow: auto;
   height: 70vh;
@@ -93,4 +93,14 @@ body, button{
 }
 .show-box{
   display: block;
+}
+.card-mentor{
+  width: 25%;
+  img{
+    width:65%;
+    margin:0 auto;
+  }
+}
+.link_1{
+  color:#ffffff;
 }

@@ -38,7 +38,7 @@ class Login extends Component {
                 </h1>
               </div>
               <div className="column is-one-third">
-                <div className="card">
+                <div className="card card-form">
                   <div className="card-content">
                     <h1 className="title has-text-centered">Iniciar Sesión</h1>
                       <form onSubmit={this.onSubmit}>
