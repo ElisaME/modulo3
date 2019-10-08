@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default class CareerDetail extends Component {
   state={
@@ -51,9 +52,9 @@ export default class CareerDetail extends Component {
               </div>
             </div>
             <footer class="card-footer principal">
-                <a href="#" class="card-footer-item link_1"><i class="fas fa-lg fa-plus-circle"></i></a>
-                <a href="#" class="card-footer-item link_1"><i class="far fa-lg fa-calendar-check"></i></a>
-                <a href="#" class="card-footer-item link_1"><i class="far fa-lg fa-envelope"></i></a>
+                <Link to={`/mentor/${mentor._id}`} className="card-footer-item link_1"><i class="fas fa-lg fa-plus-circle"></i></Link>
+                <Link className="card-footer-item link_1"><i class="far fa-lg fa-calendar-check"></i></Link>
+                <Link className="card-footer-item link_1"><i class="far fa-lg fa-envelope"></i></Link>
               </footer>
           </div>
         ))}   

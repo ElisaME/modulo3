@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import CareerContainer from './components/career/CareerContainer';
 import CareerDetail from './components/career/CareerDetail';
 import Home from './components/Home';
+import Mentor from './components/user/Mentor';
 
 const Router = () => (
   <BrowserRouter>
@@ -22,6 +23,7 @@ const Router = () => (
       <Route exact path="/auth/edit-profile" component={EditProfile} />
       <Route exact path="/allCareers" component={CareerContainer}/>
       <Route exact path="/career/:id" component={CareerDetail}/>
+      <Route exact path="/mentor/:id" component={Mentor}/>
     </Switch>
   </BrowserRouter>
 );

@@ -15,7 +15,9 @@ const eventSchema = new Schema ({
     ref:'User'
   },
   description:String,
-  total_students:Number
+  total_students:Number,
+  date:String,
+  hour:String
 },
 {
   timestamps:true
