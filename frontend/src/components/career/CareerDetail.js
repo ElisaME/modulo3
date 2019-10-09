@@ -35,14 +35,14 @@ export default class CareerDetail extends Component {
           <div class="card card-mentor">
             <div class="card-image">
               <figure class="image">
-                <img className="profile-img" src={mentor.image} alt="Placeholder image"/>
+                <img className="profile-img" src={mentor.image} alt="profile"/>
               </figure>
             </div>
             <div class="card-content  has-background-light">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"/>
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="career"/>
                   </figure>
                 </div>
                 <div class="media-content">

@@ -24,7 +24,7 @@ export default class Mentor extends Component {
           <div class="hero-body">
             <div class="container">
               <figure class="mentor-image image is-128x128 is-pulled-left">
-                <img class="is-rounded" src={user.image}/>
+                <img class="is-rounded" src={user.image} alt="mentor"/>
               </figure>
               <h1 class="title">
                 {user.name}

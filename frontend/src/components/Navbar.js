@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { MyContext } from '../context/index';
 import logo from '../images/logo_1.gif';
 
+
 function MenuOptions(props) {
   const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
@@ -24,10 +25,6 @@ function MenuOptions(props) {
   }
   return (
     <div id="navbarBasicExample" className="navbar-menu">
-      <div className="navbar-start">
-        <Link className="navbar-item menu-item" to="/auth/profile">Perfil</Link>
-        <Link className="navbar-item menu-item" to="/allCareers">Carreras</Link>
-      </div>
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">

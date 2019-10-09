@@ -21,7 +21,8 @@ export default class Profile extends Component {
       myCareers:[],
       careersBoxIsVisible:true,
       eventsBoxIsVisible:false,
-      events:[]
+      events:[],
+      user:{}
     };
 
     this.openModal = this.openModal.bind(this);
@@ -77,7 +78,7 @@ export default class Profile extends Component {
   }
 
   action = (eventid) => {
-    if(this.context.state.loggedUser.category == 'Mentor'){
+    if(this.state.user.category === 'Mentor'){
       Axios.delete(`http://localhost:3000/api/eraseEvent/${eventid}`)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error))
@@ -95,11 +96,13 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    if (!this.context.state.loggedUser) return this.props.history.push('/auth/login');
+    if (this.context.state.loggedUser == null){
+      return this.props.history.push('/auth/login');
+    }
     AUTH_SERVICE.profile()
       .then((response) => {
         this.setState({careers:[...response.data.careers], myCareers:[...response.data.user.careers],
-        events:[...response.data.events]})
+        events:[...response.data.events], user:response.data.user})
       })
       .catch((error) => {
         console.log(error);
@@ -107,8 +110,8 @@ export default class Profile extends Component {
   }
 
   render() {
-    const {careers, myCareers, events, newEvent} = this.state
-    const category = this.context.state.loggedUser.category
+    const {careers, myCareers, events} = this.state
+    const category = this.state.user.category
     let info;
     let myCareersSelection;
     let eventType;
@@ -123,8 +126,8 @@ export default class Profile extends Component {
       action='Cancelar'
     } else {
       info = <div>
-             <p><span className="property">Biografía: </span>  {this.context.state.loggedUser.biography}</p>
-             <p><span className="property">Título: </span>  {this.context.state.loggedUser.degree}</p>
+             <p><span className="property">Biografía: </span>  {this.state.user.biography}</p>
+             <p><span className="property">Título: </span>  {this.state.user.degree}</p>
            </div>
       myCareersSelection = <p>Carreras de las que soy mentor:</p>
       eventType='Mis eventos:'
@@ -137,19 +140,19 @@ export default class Profile extends Component {
           <h1 className="title">Datos Generales:</h1>
           <p className="subtitle">
               Bienvenido a tu perfil 
-              <small> {this.context.state.loggedUser.email}</small>
+              <small> {this.state.user.email}</small>
           </p>
           <div className="columns">
             <div className="column is-3 has-text-centered">
               <figure className="image profile-image">
-                <img className="is-rounded" src={this.context.state.loggedUser.image} alt="profile"/>
+                <img className="is-rounded" src={this.state.user.image} alt="profile"/>
               </figure>
               <Link to="edit-profile"><button className="button secondary is-small">Editar Perfil</button></Link>  
             </div>
             <div className="column is-9">
               <div class="card profile-card">
                 <div class="card-content">
-                  <p><span className="property">Name: </span> {this.context.state.loggedUser.name}</p>
+                  <p><span className="property">Name: </span> {this.state.user.name}</p>
                   {info}
                 </div>
               </div>
@@ -160,16 +163,16 @@ export default class Profile extends Component {
           <div class="tabs is-boxed">
             <ul>
               <li className={`careers ${this.state.careersBoxIsVisible ? ' is-active' : ' ' }`}   onClick={this.clickCareersBox}>
-                <a>
+                <button className="button is-outlined is-link">
                   <span class="icon is-small"><i class="fas fa-list-alt"></i></span>
                   <span>Carreras</span>
-                </a>
+                </button>
               </li>
               <li className={`events ${this.state.eventsBoxIsVisible ? ' is-active' : ' ' }`}   onClick={this.clickEventsBox}>
-                <a >
+                <button className="button is-outlined is-link">
                   <span class="icon is-small"><i class="fas fa-calendar-alt"></i></span>
                   <span>Eventos</span>
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -183,14 +186,14 @@ export default class Profile extends Component {
               </ul>
               <div class="field is-grouped">
                 <p class="control">
-                  <a class="button secondary" onClick={this.openModal}>
+                  <button class="button secondary" onClick={this.openModal}>
                     Registrar carrera
-                  </a>
+                  </button>
                 </p>
                 <p class="control">
-                  <a class="button secondary">
+                  <button class="button secondary">
                     Editar
-                  </a>
+                  </button>
                 </p>
               </div>
             </div>
