@@ -12,6 +12,7 @@ export default class NewEvent extends Component {
     const key = e.target.name;
     event[key] = e.target.value;
     this.setState({ event });
+    console.log(this.state.event)
   };
 
   onSubmit = (e) => {
@@ -66,7 +67,8 @@ export default class NewEvent extends Component {
               <div class="field">
                 <label class="label">Duración:</label>
                 <div class="control">
-                  <select name="duration">
+                  <select onChange={this.handleInput} name="duration">
+                    <option>Selecciona una duración:</option>
                     <option>30 min</option>
                     <option>1 hr</option>
                     <option>1hr 30min</option>
@@ -89,7 +91,7 @@ export default class NewEvent extends Component {
               <div class="field">
                 <p class="control">
                   <button class="button secondary">
-                    Login
+                    Crear
                   </button>
                 </p>
               </div>

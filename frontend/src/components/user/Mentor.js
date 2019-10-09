@@ -48,7 +48,7 @@ export default class Mentor extends Component {
                   {events.map((event) => (
                     <div className="card events-list">
                     <p>Fecha: {event.date} a las {event.hour}</p>
-                    <p>Place</p>
+                    <p>Place: {event.place}</p>
                     <p>Descripción: {event.description}</p>
                     <p>Duración: {event.duration}</p>
                     <p>Lugares disponibles:{event.total_students}</p>

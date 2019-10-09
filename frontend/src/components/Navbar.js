@@ -3,6 +3,10 @@ import {Link} from 'react-router-dom';
 import { MyContext } from '../context/index';
 import logo from '../images/logo_1.gif';
 
+function logout(){
+  localStorage.clear()
+  window.location.href='/'
+}
 
 function MenuOptions(props) {
   const isLoggedIn = props.isLoggedIn;
@@ -16,7 +20,8 @@ function MenuOptions(props) {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <Link className="has-text-black" to="/auth/logout"><button className="button nav-button secondary"><strong>Log out</strong></button></Link>
+              <button onClick={logout} className="button nav-button secondary"><strong>Log out</strong></button>
+              {/* <Link className="has-text-black" to="/auth/logout"><button className="button nav-button secondary"><strong>Log out</strong></button></Link> */}
             </div>
           </div>
         </div>

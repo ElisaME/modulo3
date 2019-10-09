@@ -24,16 +24,16 @@ export default class CareerContainer extends Component {
       <div className="section">
         <nav className="panel">
         <p className="panel-heading">
-          Careers
+          Carreras
         </p>
-        <div className="panel-block">
+        {/* <div className="panel-block">
           <p className="control has-icons-left">
             <input className="input is-small" type="text" placeholder="search"/>
             <span className="icon is-small is-left">
               <i className="fas fa-search" aria-hidden="true"></i>
             </span>
           </p>
-        </div>
+        </div> */}
         {/* <p className="panel-tabs">
           <span className="is-active">all</span>
           <span>Área 1</span>

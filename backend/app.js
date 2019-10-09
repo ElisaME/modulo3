@@ -33,7 +33,7 @@ app.use(
     credentials: true,
     origin: ['http://localhost:3001',
         'https://queestudiar.netlify.com',
-        'https://arcane-plateau-89806.herokuapp.com']
+        'https://arcane-plateau-89806.herokuapp.com/api']
   })
 );
 
