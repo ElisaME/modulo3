@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AUTH_SERVICE from '../services/auth';
 import {Link} from 'react-router-dom';
+import Navbar from './Navbar';
+
 
 export default class Signup extends Component {
   state = {
@@ -29,6 +31,7 @@ export default class Signup extends Component {
   render() {
     return (
       <div>
+        <Navbar></Navbar>
         <section className="hero principal is-fullheight">
           <div className="hero-body">
               <div className="column is-half">

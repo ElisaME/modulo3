@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AUTH_SERVICE from '../services/auth';
 import { MyContext } from '../context/index';
 import {Link} from 'react-router-dom';
+import Navbar from './Navbar';
 
 class Login extends Component {
   state = {
@@ -30,6 +31,7 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <Navbar></Navbar>
         <section className="hero principal is-fullheight">
           <div className="hero-body">
               <div className="column is-half">

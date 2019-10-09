@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Navbar from '../Navbar';
 
 export default class CareerDetail extends Component {
   state={
@@ -23,6 +24,7 @@ export default class CareerDetail extends Component {
     const {career, mentors} = this.state
     return (
       <div>
+        <Navbar></Navbar>
         <p>Nombre: {career.name}</p>
         <p>Descripción: {career.description}</p>
         <p>Ingreso Promedio:{career.income}</p>

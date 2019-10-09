@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Navbar from './Navbar';
 
 export default class Home extends Component {
   render() {
     return (
       <div>
+        <Navbar></Navbar>
         <div className="header"></div>
         <section class="hero secondary has-text-centered">
           <div class="hero-body">

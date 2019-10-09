@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
+import Navbar from '../Navbar';
 
 export default class Mentor extends Component {
   state = {
@@ -18,6 +19,7 @@ export default class Mentor extends Component {
     const {user, events} = this.state
     return (
       <div>
+        <Navbar></Navbar>
         <section class="hero secondary">
           <div class="hero-body">
             <div class="container">

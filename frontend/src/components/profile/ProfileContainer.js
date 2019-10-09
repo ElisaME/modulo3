@@ -4,6 +4,7 @@ import AUTH_SERVICE from '../../services/auth';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Axios from 'axios';
+import Navbar from '../Navbar';
  
 
 export default class Profile extends Component {
@@ -131,6 +132,7 @@ export default class Profile extends Component {
     }
     return (
       <div>
+        <Navbar></Navbar>
         <div className="container">
           <h1 className="title">Datos Generales:</h1>
           <p className="subtitle">

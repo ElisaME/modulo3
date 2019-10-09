@@ -7,15 +7,35 @@ function MenuOptions(props) {
   const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
     return (
-      <div className="buttons menu">
-        <Link to="/auth/logout"><button className="button secondary"><strong>Log out</strong></button></Link>
+      <div id="navbarBasicExample" className="navbar-menu">
+        <div className="navbar-start">
+          <Link className="navbar-item menu-item" to="/auth/profile">Perfil</Link>
+          <Link className="navbar-item menu-item" to="/allCareers">Carreras</Link>
+        </div>
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              <Link className="has-text-black" to="/auth/logout"><button className="button nav-button secondary"><strong>Log out</strong></button></Link>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
   return (
-    <div className="buttons menu">
-      <Link to="/auth/signup"><button className="button secondary"><strong>Sign up</strong></button></Link>
-      <Link to="/auth/login"><button className="button secondary"><strong>Log in</strong></button></Link>
+    <div id="navbarBasicExample" className="navbar-menu">
+      <div className="navbar-start">
+        <Link className="navbar-item menu-item" to="/auth/profile">Perfil</Link>
+        <Link className="navbar-item menu-item" to="/allCareers">Carreras</Link>
+      </div>
+      <div className="navbar-end">
+        <div className="navbar-item">
+          <div className="buttons">
+            <Link to="/auth/signup"><button className="button nav-button secondary"><strong>Sign up</strong></button></Link>
+            <Link to="/auth/login"><button className="button nav-button secondary"><strong>Log in</strong></button></Link>
+          </div>
+        </div>
+      </div>
     </div>
   )  
 }
@@ -36,14 +56,7 @@ export default class Navbar extends Component {
               <span aria-hidden="true"></span>
             </button>
           </div>
-          <div id="navbarBasicExample" className="navbar-menu">
-            <div className="navbar-end">
-              <div className="navbar-item">
-                <Link className="has-text-black" to="/allCareers">Carreras</Link>
-                <MenuOptions isLoggedIn={this.context.state.loggedUser}/>
-              </div>
-            </div>
-          </div>
+          <MenuOptions isLoggedIn={this.context.state.loggedUser}/>
         </nav>
       </div>
     )

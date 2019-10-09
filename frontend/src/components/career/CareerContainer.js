@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Navbar from '../Navbar';
 
 export default class CareerContainer extends Component {
   state = {
@@ -18,6 +19,8 @@ export default class CareerContainer extends Component {
   render() {
     const { careers } = this.state;
     return (
+      <div>
+      <Navbar></Navbar>
       <div className="section">
         <nav className="panel">
         <p className="panel-heading">
@@ -49,7 +52,7 @@ export default class CareerContainer extends Component {
           </p>
         ))}
         </nav>
-        
+      </div>
       </div>
     );
   }

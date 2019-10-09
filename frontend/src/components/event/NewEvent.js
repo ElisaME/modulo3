@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AUTH_SERVICE from '../../services/auth';
+import Navbar from '../Navbar';
 
 export default class NewEvent extends Component {
   state={
@@ -28,6 +29,7 @@ export default class NewEvent extends Component {
   render() {
     return (
       <div>
+        <Navbar></Navbar>
         <section class="hero principal">
           <div class="hero-body">
             <div class="container">

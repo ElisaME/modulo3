@@ -5,7 +5,6 @@ import Login from './components/Login';
 import Test from './components/Test';
 import Profile from './components/profile/ProfileContainer';
 import EditProfile from './components/profile/EditProfile';
-import Navbar from './components/Navbar';
 import CareerContainer from './components/career/CareerContainer';
 import CareerDetail from './components/career/CareerDetail';
 import Home from './components/Home';
@@ -14,7 +13,6 @@ import NewEvent from './components/event/NewEvent';
 
 const Router = () => (
   <BrowserRouter>
-    <Navbar></Navbar>
     <Switch>
       <Route exact path="/" component={Home}/>
       <Route exact path="/auth/signup" component={Signup} />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MyContext } from '../../context/index';
 import AUTH_SERVICE from '../../services/auth';
+import Navbar from '../Navbar';
 
 export default class EditProfile extends Component {
   state = {
@@ -60,6 +61,8 @@ export default class EditProfile extends Component {
       </div>
     } 
     return (
+      <div>
+      <Navbar></Navbar>
       <div className="section">
         <p className="subtitle">
           Tu cuenta:
@@ -100,6 +103,7 @@ export default class EditProfile extends Component {
             </div>
           </div>
         </form>
+      </div>
       </div>
     )
   }
