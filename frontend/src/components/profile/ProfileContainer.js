@@ -19,7 +19,8 @@ export default class Profile extends Component {
       careerMentor:{},
       myCareers:[],
       careersBoxIsVisible:true,
-      eventsBoxIsVisible:false
+      eventsBoxIsVisible:false,
+      events:[]
     };
 
     this.openModal = this.openModal.bind(this);
@@ -87,7 +88,8 @@ export default class Profile extends Component {
     if (!this.context.state.loggedUser) return this.props.history.push('/auth/login');
     AUTH_SERVICE.profile()
       .then((response) => {
-        this.setState({careers:[...response.data.careers], myCareers:[...response.data.user.careers]})
+        this.setState({careers:[...response.data.careers], myCareers:[...response.data.user.careers],
+        events:[...response.data.events]})
         console.log(response)
       })
       .catch((error) => {
@@ -96,22 +98,31 @@ export default class Profile extends Component {
   }
 
   render() {
-    const {careers, myCareers} = this.state
+    const {careers, myCareers, events} = this.state
     const category = this.context.state.loggedUser.category
     let info;
     let myCareersSelection;
+    let eventType;
+    let button1;
+    let button2;
     if (category === 'Student') {
       info = <div>
             <p><span className="property">Carreras:</span> </p>
              <p><span className="property">Resultados Test Hermann: </span> </p>
             </div>
       myCareersSelection = <p>Mis opciones de carrera:</p>
+      eventType='Eventos a los que asistiré'
+      button1 = <button className="button is-small is-danger">Cancelar</button>
+      button2 = <button className="button is-small is-info">Ver</button>
     } else {
       info = <div>
              <p><span className="property">Biografía: </span>  {this.context.state.loggedUser.biography}</p>
              <p><span className="property">Título: </span>  {this.context.state.loggedUser.degree}</p>
            </div>
       myCareersSelection = <p>Carreras de las que soy mentor:</p>
+      eventType='Mis eventos:'
+      button1 = <button className="button is-small is-danger">Eliminar</button>
+      button2 = <button className="button is-small is-info">Editar</button>
     }
     return (
       <div>
@@ -177,7 +188,29 @@ export default class Profile extends Component {
               </div>
             </div>
             <div className={`${(this.state.careersBoxIsVisible) ? 'hidden-box' : 'show-box' }`}>
-              Eventos
+              {eventType}
+              
+              <table className="table is-bordered is-striped">
+                <thead>
+                  <tr>
+                    <th>Lugar</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th colspan="2" scope="colgroup">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {events.map((event) => (
+                    <tr>
+                      <td>{event.place}</td>
+                      <td>{event.date}</td>
+                      <td>{event.hour}</td>
+                      <td>{button1}</td>
+                      <td>{button2}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
           </section>
