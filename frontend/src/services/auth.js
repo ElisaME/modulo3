@@ -1,5 +1,7 @@
 import axios from 'axios';
-const baseURL = 'http://localhost:3000/api';
+process.env.NODE_ENV === 'production'
+  ? (const baseURL = 'https://arcane-plateau-89806.herokuapp.com')
+  : (const baseURL = 'http://localhost:3000/api');
 
 const SERVICE = axios.create({ withCredentials: true, baseURL });
 

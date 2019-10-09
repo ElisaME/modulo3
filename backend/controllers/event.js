@@ -20,8 +20,20 @@ exports.editEvent = async ( req, res, next ) => {
   res.status(200).json({event})
 }
 
-exports.deleteEvent = ('/events/:id', (req, res, next) => {
+exports.deleteEvent = (req, res, next) => {
   Event.findByIdAndDelete(req.params.id)
     .then((event) => res.status(200).json({ event }))
     .catch((error) => res.status(500).json({ error }));
-});
+};
+
+exports.joinEvent = async (req, res, next) => {
+  const user = await User.findById(req.user.id)
+  const event = await Event.findById(req.params.id)
+  event.students.push(user.id)
+  event.save()
+  .then((event) => 
+    res.status(200).json({event}
+  ))
+  .catch((error) => res.status(500).json({error})); 
+}
+

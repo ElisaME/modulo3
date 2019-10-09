@@ -10,10 +10,10 @@ const eventSchema = new Schema ({
     type:String,
     enum:['30min', '1hr', '1hr 30min', '2h']
   },
-  students:{
+  students:[{
     type: Schema.Types.ObjectId,
     ref:'User'
-  },
+  }],
   description:String,
   total_students:Number,
   date:String,
