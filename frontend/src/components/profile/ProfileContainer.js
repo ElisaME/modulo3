@@ -64,19 +64,28 @@ export default class Profile extends Component {
     let { careerMentor } = this.state;
     careerMentor['career'] = e.target.value
     this.setState({careerMentor})
-    console.log('>>>>>>' + this.state.careerMentor)
   }
 
   asignCareer = (e) =>{
     e.preventDefault();
     AUTH_SERVICE.asignCareer(this.state.careerMentor)
     .then((response) => {
-      console.log(response);
       this.props.history.push('/auth/profile');
       this.setState({modalIsOpen:false})
     })
   }
 
+  action = (eventid) => {
+    if(this.context.state.loggedUser.category == 'Mentor'){
+      Axios.delete(`http://localhost:3000/api/eraseEvent/${eventid}`)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error))
+    }else{
+      Axios.put(`http://localhost:3000/api/leftevent/${eventid}`)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error))
+    }
+  }
   clickCareersBox = () => {
     this.setState({ careersBoxIsVisible: true, eventsBoxIsVisible: false})
   }
@@ -90,7 +99,6 @@ export default class Profile extends Component {
       .then((response) => {
         this.setState({careers:[...response.data.careers], myCareers:[...response.data.user.careers],
         events:[...response.data.events]})
-        console.log(response)
       })
       .catch((error) => {
         console.log(error);
@@ -98,13 +106,12 @@ export default class Profile extends Component {
   }
 
   render() {
-    const {careers, myCareers, events} = this.state
+    const {careers, myCareers, events, newEvent} = this.state
     const category = this.context.state.loggedUser.category
     let info;
     let myCareersSelection;
     let eventType;
-    let button1;
-    let button2;
+    let action;
     if (category === 'Student') {
       info = <div>
             <p><span className="property">Carreras:</span> </p>
@@ -112,8 +119,7 @@ export default class Profile extends Component {
             </div>
       myCareersSelection = <p>Mis opciones de carrera:</p>
       eventType='Eventos a los que asistiré'
-      button1 = <button className="button is-small is-danger">Cancelar</button>
-      button2 = <button className="button is-small is-info">Ver</button>
+      action='Cancelar'
     } else {
       info = <div>
              <p><span className="property">Biografía: </span>  {this.context.state.loggedUser.biography}</p>
@@ -121,8 +127,7 @@ export default class Profile extends Component {
            </div>
       myCareersSelection = <p>Carreras de las que soy mentor:</p>
       eventType='Mis eventos:'
-      button1 = <button className="button is-small is-danger">Eliminar</button>
-      button2 = <button className="button is-small is-info">Editar</button>
+      action='Eliminar'
     }
     return (
       <div>
@@ -205,12 +210,13 @@ export default class Profile extends Component {
                       <td>{event.place}</td>
                       <td>{event.date}</td>
                       <td>{event.hour}</td>
-                      <td>{button1}</td>
-                      <td>{button2}</td>
+                      <td><button onClick={() => this.action(event._id)} className="button is-small is-danger">{action}</button></td>
+                      {/* <td><button onClick={() => this.action2()} className="button is-small is-danger">{action2}</button></td> */}
                     </tr>
                   ))}
                 </tbody>
               </table>
+              <Link to="/newEvent"><button class="button secondary">Crear evento</button></Link>
             </div>
           </div>
           </section>

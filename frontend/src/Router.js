@@ -10,6 +10,7 @@ import CareerContainer from './components/career/CareerContainer';
 import CareerDetail from './components/career/CareerDetail';
 import Home from './components/Home';
 import Mentor from './components/user/Mentor';
+import NewEvent from './components/event/NewEvent';
 
 const Router = () => (
   <BrowserRouter>
@@ -24,6 +25,7 @@ const Router = () => (
       <Route exact path="/allCareers" component={CareerContainer}/>
       <Route exact path="/career/:id" component={CareerDetail}/>
       <Route exact path="/mentor/:id" component={Mentor}/>
+      <Route exact path="/newEvent" component={NewEvent}/>
     </Switch>
   </BrowserRouter>
 );

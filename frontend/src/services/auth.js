@@ -28,6 +28,12 @@ const AUTH_SERVICE = {
   },
   asignCareer: async(career) => {
     return await SERVICE.post('/career/asign', career)
+  },
+  deleteEvent: async() => {
+    return await SERVICE.delete('/eraseEvent/:id')
+  },
+  newEvent: async(event) => {
+    return await SERVICE.post('/newEvent', event)
   }
 };
 
