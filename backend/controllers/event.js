@@ -37,3 +37,14 @@ exports.joinEvent = async (req, res, next) => {
   .catch((error) => res.status(500).json({error})); 
 }
 
+exports.leftEvent = async (req, res, next) => {
+  const user = await User.findById(req.user.id)
+  const event = await Event.findById(req.params.id)
+  const index = event.students.indexOf(user.id);
+  event.students.splice(index,1)
+  event.save()
+  .then((event) => 
+    res.status(200).json({event}
+  ))
+  .catch((error) => res.status(500).json({error}));  
+}

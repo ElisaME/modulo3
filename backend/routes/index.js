@@ -7,7 +7,7 @@ const { signup, login, logout} = require('../controllers/auth');
 const { getProfile, editProfile, getUser } = require('../controllers/profile');
 const { sendTest } = require('../controllers/test');
 const { createCareer, allCareers, careerDetail, mentorCareer } = require('../controllers/career');
-const { newEvent, editEvent, deleteEvent, eventsMentor, joinEvent} = require('../controllers/event');
+const { newEvent, editEvent, deleteEvent, eventsMentor, joinEvent, leftEvent} = require('../controllers/event');
 
 
 router.post('/signup', signup);
@@ -26,5 +26,6 @@ router.delete('/eraseEvent/:id', deleteEvent);
 router.get('/mentor-events/:id', eventsMentor);
 router.get('/user/:id', getUser);
 router.put('/joinevent/:id',joinEvent);
+router.put('/leftevent/:id', leftEvent);
 
 module.exports = router;
