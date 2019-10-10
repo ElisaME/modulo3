@@ -68,7 +68,7 @@ export default class EditProfile extends Component {
           Tu cuenta:
         </p>
         <form onSubmit={this.onSubmit}>
-          <div className="file has-name">
+          {/* <div className="file has-name">
             <label className="file-label">
               <input className="file-input" type="file" name="photo"/>
               <span className="file-cta">
@@ -83,7 +83,7 @@ export default class EditProfile extends Component {
                 Screen Shot 2017-07-29 at 15.54.25.png
               </span>
             </label>
-          </div>
+          </div> */}
           <div className="field">
             <label className="label">Name</label>
             <div className="control">

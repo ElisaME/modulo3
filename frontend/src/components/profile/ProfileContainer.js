@@ -24,7 +24,8 @@ export default class Profile extends Component {
       careersBoxIsVisible:true,
       eventsBoxIsVisible:false,
       events:[],
-      user:{}
+      user:{},
+      test:{}
     };
 
     this.openModal = this.openModal.bind(this);
@@ -104,7 +105,8 @@ export default class Profile extends Component {
     AUTH_SERVICE.profile()
       .then((response) => {
         this.setState({careers:[...response.data.careers], myCareers:[...response.data.user.careers],
-        events:[...response.data.events], user:response.data.user})
+        events:[...response.data.events], user:response.data.user, test:response.data.user.test_hermann})
+        console.log(this.state.test)
       })
       .catch((error) => {
         console.log(error);
@@ -118,14 +120,15 @@ export default class Profile extends Component {
     let myCareersSelection;
     let eventType;
     let action;
+    let addCareer;
     if (category === 'Student') {
       info = <div>
             <p><span className="property">Carreras:</span> </p>
-             <p><span className="property">Resultados Test Hermann: </span> </p>
             </div>
       myCareersSelection = <p>Mis opciones de carrera:</p>
       eventType='Eventos a los que asistiré'
       action='Cancelar'
+      addCareer='Agrega una carrera a tu lista de opciones:'
     } else {
       info = <div>
              <p><span className="property">Biografía: </span>  {this.state.user.biography}</p>
@@ -134,6 +137,7 @@ export default class Profile extends Component {
       myCareersSelection = <p>Carreras de las que soy mentor:</p>
       eventType='Mis eventos:'
       action='Eliminar'
+      addCareer='Elige una carrera para ser mentor:'
     }
     return (
       <div>
@@ -155,6 +159,8 @@ export default class Profile extends Component {
               <div class="card profile-card">
                 <div class="card-content">
                   <p><span className="property">Name: </span> {this.state.user.name}</p>
+                  {/* <p><span className="property">Resultados Test Hermann:
+                  </span> </p> */}
                   {info}
                 </div>
               </div>
@@ -208,7 +214,7 @@ export default class Profile extends Component {
                     <th>Lugar</th>
                     <th>Fecha</th>
                     <th>Hora</th>
-                    <th colspan="2" scope="colgroup">Acciones</th>
+                    <th colSpan="2" scope="colgroup">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -238,7 +244,7 @@ export default class Profile extends Component {
 >
             <div className="modal-card">
               <header className="modal-card-head">
-                <p className="modal-card-title">Elige una carrera para ser mentor:</p>
+                <p className="modal-card-title">{addCareer}</p>
                 <button onClick={this.closeModal} className="delete" aria-label="close"></button>
               </header>
               <section className="modal-card-body">
@@ -258,7 +264,7 @@ export default class Profile extends Component {
                   </div>
                   <button type="submit" className="button secondary">Guardar</button>
                 </form>
-                <p>¿No existe la carrera de la cual quieres ser mentor? Regístrala <span onClick={this.handleClick}>aquí.</span></p>
+                <p>¿No encuentras la carrera que deseas? Regístrala <span onClick={this.handleClick}>aquí.</span></p>
                 <div className="new-career" hidden = {!this.state.formIsHide}>
                   <h2 className="subtitle">Registro de carrera:</h2>
                     <form onSubmit={this.newCareer}>
@@ -289,7 +295,7 @@ export default class Profile extends Component {
                       <div class="field">
                         <label class="label">Campo de trabajo</label>
                         <div class="control">
-                          <input name="income" onChange={this.handleInput} class="input" type="text" placeholder="Campos de aplicación..."/>
+                          <input name="field" onChange={this.handleInput} class="input" type="text" placeholder="Campos de aplicación..."/>
                         </div>
                       </div>
                       <div class="control">

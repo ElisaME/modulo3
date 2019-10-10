@@ -3,7 +3,10 @@ const PLM = require('passport-local-mongoose')
 
 const userSchema = new Schema({
   name:String,
-  email: String,
+  email:{
+    type:String,
+    unique:true
+  },
   category:{
     type: String,
     enum: ['Student', 'Mentor']

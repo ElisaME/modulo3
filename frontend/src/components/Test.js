@@ -15,12 +15,7 @@ class Test extends Component {
       D:{},
       valueD:0,
       currentStep: 1,
-      results:{
-        A:'',
-        B:'',
-        C:'',
-        D:''
-      }
+      results:{}
     }
   }
 
@@ -36,12 +31,12 @@ class Test extends Component {
     let { A , valueA } = this.state;
     valueA = Object.values(A).reduce((a, b) => a + b)
     this.setState({valueA})
-    this.setState(prevState => ({
-      results: {                   
-          ...prevState.results,    
-          A: valueA       
-      }
-    }))
+    // this.setState(prevState => ({
+    //   results: {                   
+    //       ...prevState.results,    
+    //       A: valueA       
+    //   }
+    // }))
     console.log(valueA)
   }
   incrementB = e => {
@@ -56,12 +51,12 @@ class Test extends Component {
     let { B , valueB } = this.state;
     valueB = Object.values(B).reduce((a, b) => a + b)
     this.setState({valueB})
-    this.setState(prevState => ({
-      results: {                   
-          ...prevState.results,    
-          B: valueB
-      }
-    }))
+    // this.setState(prevState => ({
+    //   results: {                   
+    //       ...prevState.results,    
+    //       B: valueB
+    //   }
+    // }))
     console.log(valueB)
   }
   incrementC = e => {
@@ -76,12 +71,12 @@ class Test extends Component {
     let { C , valueC } = this.state;
     valueC = Object.values(C).reduce((a, b) => a + b)
     this.setState({valueC})
-    this.setState(prevState => ({
-      results: {                   
-          ...prevState.results,    
-          C: valueC       
-      }
-    }))
+    // this.setState(prevState => ({
+    //   results: {                   
+    //       ...prevState.results,    
+    //       C: valueC       
+    //   }
+    // }))
     console.log(valueC)
   }
   incrementD = e => {
@@ -96,12 +91,12 @@ class Test extends Component {
     let { D , valueD } = this.state;
     valueD = Object.values(D).reduce((a, b) => a + b)
     this.setState({valueD})
-    this.setState(prevState => ({
-      results: {                   
-          ...prevState.results,    
-          D: valueD      
-      }
-    }))
+    // this.setState(prevState => ({
+    //   results: {                   
+    //       ...prevState.results,    
+    //       D: valueD      
+    //   }
+    // }))
     console.log(valueD)
   }
 
@@ -154,7 +149,8 @@ nextButton(){
 
   onSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state.results)
+    const {valueA, valueB,valueC,valueD} = this.state
+    this.setState({results:valueA, valueB,valueC,valueD })
     AUTH_SERVICE.sendTest(this.state.results)
     .then((response) => 
       console.log(response),

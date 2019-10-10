@@ -7,7 +7,8 @@ const baseURL = isProduction ? 'https://arcane-plateau-89806.herokuapp.com/api' 
 
 export default class CareerContainer extends Component {
   state = {
-    careers: []
+    careers: [],
+    filtered:[]
   };
 
   componentDidMount() {
@@ -19,8 +20,18 @@ export default class CareerContainer extends Component {
       .catch((error) => {console.log(error)});
   }
 
-  render() {
+  search = (e) => {
+    const { value } = e.target;
     const { careers } = this.state;
+    const query = value.toLowerCase();
+    const filtered = careers.filter(
+      (career) => career.name.toLowerCase().includes(query)
+    );
+    this.setState({ filtered });
+  };
+
+  render() {
+    const { careers , filtered } = this.state;
     return (
       <div>
       <Navbar></Navbar>
@@ -29,14 +40,14 @@ export default class CareerContainer extends Component {
         <p className="panel-heading">
           Carreras
         </p>
-        {/* <div className="panel-block">
+        <div className="panel-block">
           <p className="control has-icons-left">
-            <input className="input is-small" type="text" placeholder="search"/>
+            <input onChange={this.search} className="input is-small" type="text" placeholder="search"/>
             <span className="icon is-small is-left">
               <i className="fas fa-search" aria-hidden="true"></i>
             </span>
           </p>
-        </div> */}
+        </div>
         {/* <p className="panel-tabs">
           <span className="is-active">all</span>
           <span>Área 1</span>
@@ -44,10 +55,22 @@ export default class CareerContainer extends Component {
           <span>Área 3</span>
           <span>Área 4</span>
         </p> */}
-        {careers.map((career) => (
-          <p key={career._id} className="panel-block" onClick={() =>
-                  this.props.history.push(`/career/${career._id}`)
-                }> 
+        {filtered.length === 0 &&
+          careers.map((career) => (
+            <p key={career._id} className="panel-block" onClick={() =>
+              this.props.history.push(`/career/${career._id}`)
+            }> 
+            <span className="panel-icon">
+              <i className="fas fa-book" aria-hidden="true"></i>
+            </span>
+            {career.name}
+          </p>
+        ))}
+        {filtered.length !== 0 &&
+          filtered.map((career) => (
+            <p key={career._id} className="panel-block" onClick={() =>
+              this.props.history.push(`/career/${career._id}`)
+            }> 
             <span className="panel-icon">
               <i className="fas fa-book" aria-hidden="true"></i>
             </span>

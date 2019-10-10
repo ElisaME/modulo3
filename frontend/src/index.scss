@@ -47,6 +47,7 @@ body, button{
 }
 .profile-card{
   height: 40vh;
+  overflow-y:auto; 
 }
 .profile-image{
   width:200px;
