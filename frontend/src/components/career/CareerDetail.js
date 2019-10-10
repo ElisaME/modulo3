@@ -3,15 +3,18 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Navbar from '../Navbar';
 
+const isProduction = process.env.NODE_ENV === 'production'
+const baseURL = isProduction ? 'https://arcane-plateau-89806.herokuapp.com/api' : 'http://localhost:3000/api'
+
 export default class CareerDetail extends Component {
   state={
     career:{},
     mentors:[]
   }
-
+  
   componentDidMount(){
     axios
-    .get(`http://localhost:3000/api/career/${this.props.match.params.id}`)
+    .get(`${baseURL}/career/${this.props.match.params.id}`)
     .then(({ data: { career, mentors }}) => this.setState({ career, mentors }))
     .catch((error) => {console.log(error)});
   }
@@ -25,10 +28,10 @@ export default class CareerDetail extends Component {
     return (
       <div>
         <Navbar></Navbar>
-        <section class="hero is-light">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
+        <section className="hero is-light">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">
                 {career.name}
               </h1>
             </div>
@@ -45,31 +48,31 @@ export default class CareerDetail extends Component {
         <section className="section">
           <h2 className="subtitle">Mentores</h2>
           {mentors.map((mentor) => (
-            <div class="card card-mentor">
-              <div class="card-image">
-                <figure class="image">
+            <div key={mentor._id} className="card card-mentor">
+              <div className="card-image">
+                <figure className="image">
                   <img className="profile-img" src={mentor.image} alt="profile"/>
                 </figure>
               </div>
-              <div class="card-content  has-background-light">
-                <div class="media">
-                  <div class="media-left">
-                    <figure class="image is-48x48">
+              <div className="card-content  has-background-light">
+                <div className="media">
+                  <div className="media-left">
+                    <figure className="image is-48x48">
                       <img src="https://bulma.io/images/placeholders/96x96.png" alt="career"/>
                     </figure>
                   </div>
-                  <div class="media-content">
-                    <p class="title is-4">{mentor.name}</p>
+                  <div className="media-content">
+                    <p className="title is-4">{mentor.name}</p>
                   </div>
                 </div>
-                <div class="content">
+                <div className="content">
                   {this.truncate(mentor.biography)}
                 </div>
               </div>
-              <footer class="card-footer principal">
-                  <Link to={`/mentor/${mentor._id}`} className="card-footer-item link_1"><i class="fas fa-lg fa-plus-circle"></i></Link>
-                  <Link className="card-footer-item link_1"><i class="far fa-lg fa-calendar-check"></i></Link>
-                  <Link className="card-footer-item link_1"><i class="far fa-lg fa-envelope"></i></Link>
+              <footer className="card-footer principal">
+                  <Link to={`/mentor/${mentor._id}`} className="card-footer-item link_1"><i className="fas fa-lg fa-plus-circle"></i></Link>
+                  <Link className="card-footer-item link_1"><i className="far fa-lg fa-calendar-check"></i></Link>
+                  <Link className="card-footer-item link_1"><i className="far fa-lg fa-envelope"></i></Link>
                 </footer>
             </div>
           ))}   

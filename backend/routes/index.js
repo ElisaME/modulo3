@@ -25,7 +25,7 @@ router.put('/editEvent/:id', editEvent);
 router.delete('/eraseEvent/:id', deleteEvent);
 router.get('/mentor-events/:id', eventsMentor);
 router.get('/user/:id', getUser);
-router.put('/joinevent/:id',joinEvent);
+router.post('/joinEvent/:id',joinEvent);
 router.put('/leftevent/:id', leftEvent);
 
 module.exports = router;

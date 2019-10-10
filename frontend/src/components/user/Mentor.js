@@ -1,20 +1,36 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
 import Navbar from '../Navbar';
+import { MyContext } from '../../context/index';
+
+const isProduction = process.env.NODE_ENV === 'production'
+const baseURL = isProduction ? 'https://arcane-plateau-89806.herokuapp.com/api' : 'http://localhost:3000/api'
 
 export default class Mentor extends Component {
   state = {
     user:{},
     events:[]
   }
+
   componentDidMount(){
-    //if (!this.context.state.loggedUser) return this.props.history.push('/auth/login');
-    Axios.get(`http://localhost:3000/api/user/${this.props.match.params.id}`)
+    if (!this.context.state.loggedUser) return this.props.history.push('/auth/login');
+    Axios.get(`${baseURL}/user/${this.props.match.params.id}`)
     .then((response) => {
       this.setState({user:response.data.user, events:response.data.events})
     })
     .catch((error) => console.log(error))
   }
+
+  joinEvent = (id) => {
+    console.log('here')
+    Axios.post(`${baseURL}/joinEvent/${id}`)
+    .then((response) =>
+      console.log(response),
+      this.props.history.push('/auth/profile')
+    )
+    .catch((error) => console.log(error))
+  }
+
   render() {
     const {user, events} = this.state
     return (
@@ -47,12 +63,12 @@ export default class Mentor extends Component {
                 <h2 className="subtitle">Próximos eventos:</h2>
                   {events.map((event) => (
                     <div className="card events-list">
-                    <p>Fecha: {event.date} a las {event.hour}</p>
-                    <p>Place: {event.place}</p>
-                    <p>Descripción: {event.description}</p>
-                    <p>Duración: {event.duration}</p>
-                    <p>Lugares disponibles:{event.total_students}</p>
-                    <button className="button principal">Unirse</button>
+                      <p>Fecha: {event.date} a las {event.hour}</p>
+                      <p>Place: {event.place}</p>
+                      <p>Descripción: {event.description}</p>
+                      <p>Duración: {event.duration}</p>
+                      <p>Lugares disponibles:{event.total_students}</p>
+                      <button onClick={() => this.joinEvent(event._id)} className="button principal">Unirse</button>
                     </div>
                   ))} 
               </div>
@@ -63,3 +79,5 @@ export default class Mentor extends Component {
     )
   }
 }
+
+Mentor.contextType = MyContext;

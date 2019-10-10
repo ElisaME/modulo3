@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import Axios from 'axios';
 import Navbar from '../Navbar';
- 
+
+const isProduction = process.env.NODE_ENV === 'production'
+const baseURL = isProduction ? 'https://arcane-plateau-89806.herokuapp.com/api' : 'http://localhost:3000/api'
 
 export default class Profile extends Component {
   
@@ -79,11 +81,11 @@ export default class Profile extends Component {
 
   action = (eventid) => {
     if(this.state.user.category === 'Mentor'){
-      Axios.delete(`http://localhost:3000/api/eraseEvent/${eventid}`)
+      Axios.delete(`${baseURL}/eraseEvent/${eventid}`)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error))
     }else{
-      Axios.put(`http://localhost:3000/api/leftevent/${eventid}`)
+      Axios.put(`${baseURL}/leftevent/${eventid}`)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error))
     }

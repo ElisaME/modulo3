@@ -4,10 +4,6 @@ const PLM = require('passport-local-mongoose')
 const userSchema = new Schema({
   name:String,
   email: String,
-  // profile: {
-  //   ref: 'Profile',
-  //   type: Schema.Types.ObjectId
-  // },
   category:{
     type: String,
     enum: ['Student', 'Mentor']
@@ -21,6 +17,10 @@ const userSchema = new Schema({
   image:{
     type:String,
     default:'https://png.pngtree.com/svg/20160330/dpi_user_default_avatar_116913.png'
+  },
+  test_hermann:{
+    type: Array,
+    default:[]
   }
 },{
   timestamps:true

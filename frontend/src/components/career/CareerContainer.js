@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar';
 
+const isProduction = process.env.NODE_ENV === 'production'
+const baseURL = isProduction ? 'https://arcane-plateau-89806.herokuapp.com/api' : 'http://localhost:3000/api'
+
 export default class CareerContainer extends Component {
   state = {
     careers: []
@@ -9,7 +12,7 @@ export default class CareerContainer extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3000/api/careers')
+      .get(`${baseURL}/careers`)
       .then(({ data }) => {
         this.setState({ careers: [...data.careers] })
       })

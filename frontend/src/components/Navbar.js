@@ -16,6 +16,7 @@ function MenuOptions(props) {
         <div className="navbar-start">
           <Link className="navbar-item menu-item" to="/auth/profile">Perfil</Link>
           <Link className="navbar-item menu-item" to="/allCareers">Carreras</Link>
+          <Link className="navbar-item menu-item" to="/test">Test</Link>
         </div>
         <div className="navbar-end">
           <div className="navbar-item">

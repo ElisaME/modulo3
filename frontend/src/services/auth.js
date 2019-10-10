@@ -32,6 +32,9 @@ const AUTH_SERVICE = {
   },
   newEvent: async(event) => {
     return await SERVICE.post('/newEvent', event)
+  },
+  sendTest: async(data) => {
+    return await SERVICE.post('/test', data)
   }
 };
 
