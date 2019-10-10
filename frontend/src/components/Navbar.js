@@ -13,7 +13,7 @@ function MenuOptions(props) {
   if (isLoggedIn) {
     return (
       <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
+        <div className="navbar-start burger">
           <Link className="navbar-item menu-item" to="/auth/profile">Perfil</Link>
           <Link className="navbar-item menu-item" to="/allCareers">Carreras</Link>
           <Link className="navbar-item menu-item" to="/test">Test</Link>
@@ -44,7 +44,15 @@ function MenuOptions(props) {
 }
 
 export default class Navbar extends Component {
+  //FUncionalidad para menú de hamburguesa
+  ham = (e) => {
+    var burger = document.querySelector('.burger');
+    var nav = document.querySelector('#'+burger.dataset.target);
   
+      burger.classList.toggle('is-active');
+      nav.classList.toggle('is-active');
+  }
+
   render() {
     return (
       <div>
@@ -53,7 +61,7 @@ export default class Navbar extends Component {
             <Link to="/" className="navbar-item nav-logo">
               <img src={logo} alt="logo"/>
             </Link>
-            <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={this.ham}>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>

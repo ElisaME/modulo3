@@ -34,12 +34,12 @@ export default class Signup extends Component {
         <Navbar></Navbar>
         <section className="hero principal is-fullheight">
           <div className="hero-body">
-              <div className="column is-half">
+              <div className="column is-half is-hidden-mobile">
                 <h1 className="title">
                   Bienvenido
                 </h1>
               </div>
-              <div className="column is-one-third">
+              <div className="column is-one-third is-full-mobile">
                 <div className="card card-form">
                   <div className="card-content">
                     <h1 className="title has-text-centered">Regístrate</h1>

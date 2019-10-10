@@ -25,18 +25,18 @@ export default class Home extends Component {
             <div className="columns has-text-centered">
               <div className="column is-centered">
                 <i className="home-icon far fa-clipboard fas fa-3x"></i>
-                <h3>Paso 1</h3>
-                <p>Blablablablablabla</p>
+                <h3>Consulta ofertas académicas</h3>
+                <p>Accede a información de carreras profesionales</p>
               </div>
               <div className="column has-text-centered">
-                <i className="home-icon far fa-clipboard fas fa-3x"></i>
-                <h3>Paso 1</h3>
-                <p>Blablablablablabla</p>
+                <i className="home-icon far fa-users fas fa-3x"></i>
+                <h3>Mentores</h3>
+                <p>Conoce los mentores disponibles</p>
               </div>
               <div className="column has-text-centered">
-                <i className="home-icon far fa-clipboard fas fa-3x"></i>
-                <h3>Paso 1</h3>
-                <p>Blablablablablabla</p>
+                <i className="home-icon far fa-comments fas fa-3x"></i>
+                <h3>Contáctalos</h3>
+                <p>Por medio de correo o asiste a su evento.</p>
               </div>
             </div>
           </div>

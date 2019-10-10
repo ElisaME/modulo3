@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import Navbar from '../Navbar';
+import AUTH_SERVICE from '../../services/auth';
 
 const isProduction = process.env.NODE_ENV === 'production'
 const baseURL = isProduction ? 'https://arcane-plateau-89806.herokuapp.com/api' : 'http://localhost:3000/api'
@@ -9,7 +10,8 @@ const baseURL = isProduction ? 'https://arcane-plateau-89806.herokuapp.com/api' 
 export default class CareerDetail extends Component {
   state={
     career:{},
-    mentors:[]
+    mentors:[],
+    user:{}
   }
   
   componentDidMount(){
@@ -21,6 +23,13 @@ export default class CareerDetail extends Component {
 
   truncate = (str) => {
     return str.length > 10 ? str.substring(0, 55) + "..." : str;
+  }
+
+  sendMail = (mentor_id) => {
+    axios
+    .post(`${baseURL}/sendEmail/${mentor_id}`)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error))
   }
 
   render() {
@@ -71,8 +80,8 @@ export default class CareerDetail extends Component {
               </div>
               <footer className="card-footer principal">
                   <Link to={`/mentor/${mentor._id}`} className="card-footer-item link_1"><i className="fas fa-lg fa-plus-circle"></i></Link>
-                  <Link className="card-footer-item link_1"><i className="far fa-lg fa-calendar-check"></i></Link>
-                  <Link className="card-footer-item link_1"><i className="far fa-lg fa-envelope"></i></Link>
+                  {/* <Link className="card-footer-item link_1"><i className="far fa-lg fa-calendar-check"></i></Link> */}
+                  <span onClick={() => this.sendMail(mentor._id)} className="card-footer-item link_1"><i className="far fa-lg fa-envelope"></i></span>
                 </footer>
             </div>
           ))}   
